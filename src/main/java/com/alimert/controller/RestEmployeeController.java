@@ -32,6 +32,10 @@ public class RestEmployeeController {
     public List<Employee> getEmployeeWithParams(@RequestParam(name = "firstName", required = false) String firstName, @RequestParam(name = "lastName", required = false) String lastName) {
 
         return employeeService.getEmployeeWithParams(firstName, lastName);
+    }
+    @PostMapping(path = "/save-employee")
+    public Employee saveEmployee(@RequestBody Employee employee) {
 
+        return employeeService.saveEmployee(employee);
     }
 }
