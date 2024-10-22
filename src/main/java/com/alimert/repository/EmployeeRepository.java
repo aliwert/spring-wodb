@@ -2,6 +2,7 @@ package com.alimert.repository;
 
 
 import com.alimert.model.Employee;
+import com.alimert.model.UpdateEmployeeReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -54,14 +55,16 @@ public class EmployeeRepository {
         }
         return employeeWithParams;
     }
+
     public Employee saveEmployee(Employee employee) {
         employeeList.add(employee);
         return employee;
     }
+
     public boolean deleteEmployee(String id) {
         Employee deleteEmployee = null;
         for (Employee employee : employeeList) {
-            if(id.equals(employee.getId())) {
+            if (id.equals(employee.getId())) {
                 deleteEmployee = employee;
                 break;
             }
@@ -71,5 +74,30 @@ public class EmployeeRepository {
         }
         employeeList.remove(deleteEmployee);
         return true;
+    }
+
+    private Employee findEmployeeById(String id) {
+        Employee findEmployee = null;
+        for (Employee employee : employeeList) {
+            if (employee.getId().equals(id)) {
+                findEmployee = employee;
+                break;
+            }
+        }
+        return findEmployee;
+    }
+
+    public Employee updateEmployee(String id, UpdateEmployeeReq req) {
+        Employee findEmployee = findEmployeeById(id);
+        if (findEmployee != null) {
+            deleteEmployee(id);
+            Employee updateEmployee=new Employee();
+            updateEmployee.setId(id);
+            updateEmployee.setFirstName(req.getFirstName());
+            updateEmployee.setLastName(req.getLastName());
+            employeeList.add(updateEmployee);
+            return updateEmployee;
+        }
+        return findEmployee;
     }
 }

@@ -2,6 +2,7 @@ package com.alimert.services;
 
 
 import com.alimert.model.Employee;
+import com.alimert.model.UpdateEmployeeReq;
 import com.alimert.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,9 @@ public class EmployeeService {
     }
     public boolean deleteEmployee(String id) {
         return employeeRepository.deleteEmployee(id);
+    }
+    public Employee updateEmployee(String id, UpdateEmployeeReq req) {
+        return employeeRepository.updateEmployee(id, req);
     }
 
 }

@@ -2,6 +2,7 @@ package com.alimert.controller;
 
 
 import com.alimert.model.Employee;
+import com.alimert.model.UpdateEmployeeReq;
 import com.alimert.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,11 @@ public class RestEmployeeController {
     @DeleteMapping(path = "/delete-employee/{id}")
     public boolean deleteEmployee(@PathVariable(name = "id") String id) {
         return employeeService.deleteEmployee(id);
+    }
+
+    @PutMapping(path = "/update-employee/{id}")
+    public Employee updateEmployee(@PathVariable(name = "id") String id, @RequestBody UpdateEmployeeReq updateEmployeeReq) {
+
+        return employeeService.updateEmployee(id, updateEmployeeReq);
     }
 }
