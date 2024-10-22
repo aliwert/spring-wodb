@@ -26,5 +26,8 @@ public class EmployeeService {
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.saveEmployee(employee);
     }
+    public boolean deleteEmployee(String id) {
+        return employeeRepository.deleteEmployee(id);
+    }
 
 }
